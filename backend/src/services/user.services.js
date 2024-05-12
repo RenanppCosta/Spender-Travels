@@ -1,11 +1,19 @@
 import userRepository from "../repositories/user.repository.js";
+import bcrypt from "bcrypt";
 
 const createUserService = async (body) => {
-    const { name, email, password, location } = body;
+    let { name, email, password, location } = body;
 
     if(!name || !email || !password || !location ) throw new Error("Registre todos os campos corretamente");
 
-    const user = await userRepository.createUserRepository(body);
+    password = bcrypt.hashSync(password, 10);
+
+    const user = await userRepository.createUserRepository({
+        name,
+        email,
+        password,
+        location
+    });
 
     return user;
 }
