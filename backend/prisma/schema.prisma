@@ -31,6 +31,7 @@ model Travels {
   departureDate String
   returnDate    String
   initialBudget Decimal
+  numberOfPeople Int
 
   userId Int
   user   User @relation(fields: [userId], references: [id])
