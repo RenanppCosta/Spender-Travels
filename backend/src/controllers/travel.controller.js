@@ -12,6 +12,19 @@ const createTravelController = async (req, res) => {
     }
 }
 
+const getAllTravelController = async (req, res) => {
+    try {
+
+        const travels = await travelServices.getAllTravelService();
+
+        return res.send(travels);
+        
+    } catch (error) {
+        return res.status(500).send(error.message);
+    }
+}
+
 export default{
-    createTravelController
+    createTravelController,
+    getAllTravelController
 }

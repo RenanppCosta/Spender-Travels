@@ -5,5 +5,6 @@ import { authMiddleware } from "../middlewares/auth.middleware.js";
 const travelRouter = Router();
 
 travelRouter.post("/", travelController.createTravelController);
+travelRouter.get("/", travelController.getAllTravelController);
 
 export default travelRouter;

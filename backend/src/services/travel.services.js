@@ -15,8 +15,17 @@ const createTravelService = async (body) =>{
     });
 
     return travel;
+};
+
+const getAllTravelService = async () => {
+    const travels = await travelRepository.getAllTravelRepository();
+
+    if(travels.length == 0) throw new Error("Não há viagens cadastradas!");
+
+    return travels;
 }
 
 export default {
-    createTravelService
+    createTravelService,
+    getAllTravelService
 }
