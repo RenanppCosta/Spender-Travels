@@ -24,7 +24,41 @@ const getAllTravelRepository = () => prisma.travels.findMany({
     }
 });
 
+const getTravelByIdRepository = (id) => prisma.travels.findUnique({
+    where: {
+        id: Number(id)
+    },
+    select: {
+        id: true,
+        destiny: true,
+        departureDate: true,
+        returnDate: true,
+        initialBudget: true,
+        numberOfPeople: true,
+        user: {
+            select: {
+                id: true,
+                name: true,
+                location: true
+            }
+        }
+    }
+});
+
+const updateTravelRepository = (id, body) => prisma.travels.update({
+    data: body,
+    where: {
+        id: Number(id)
+    }
+});
+
+const deleteTravelRepository = (id) => prisma.travels.delete({where: {id: Number(id)}});
+
+
 export default{
     createTravelRepository,
-    getAllTravelRepository
+    getAllTravelRepository,
+    getTravelByIdRepository,
+    updateTravelRepository,
+    deleteTravelRepository
 }
