@@ -4,8 +4,10 @@ import { authMiddleware } from "../middlewares/auth.middleware.js";
 
 const travelRouter = Router();
 
-travelRouter.post("/", travelController.createTravelController);
 travelRouter.get("/", travelController.getAllTravelController);
+
+travelRouter.use(authMiddleware);
+travelRouter.post("/", travelController.createTravelController);
 travelRouter.get("/:id", travelController.getTravelByIdController);
 travelRouter.patch("/:id", travelController.updateTravelController);
 travelRouter.delete("/:id", travelController.deleteTravelController);
