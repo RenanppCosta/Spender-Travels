@@ -10,6 +10,14 @@ const createTypeOfExpenseService = (body) =>{
     return type;
 }
 
+const getAllTypeOfExpenseService = () =>{
+    const types = typesExpensesRepository.getAllTypeOfExpenseRepository();
+
+    if(!types) throw new Error ("Não há nenhum tipo de despesa cadastrado!");
+
+    return types;
+}
 export default {
-    createTypeOfExpenseService
+    createTypeOfExpenseService,
+    getAllTypeOfExpenseService
 }

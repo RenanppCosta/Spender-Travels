@@ -14,6 +14,19 @@ const createTypeOfExpenseController = async (req,res) => {
     }
 }
 
+const getAllTypeOfExpenseController = async (req,res) => {
+    try {
+        
+        const types = await typesExpensesServices.getAllTypeOfExpenseService();
+
+        res.send(types);
+
+    } catch (error) {
+        return res.status(500).send(error.message);
+    }
+}
+
 export default {
-    createTypeOfExpenseController
+    createTypeOfExpenseController,
+    getAllTypeOfExpenseController
 }
