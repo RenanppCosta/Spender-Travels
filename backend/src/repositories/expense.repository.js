@@ -10,8 +10,27 @@ const createExpenseRepository = (body) => prisma.expenses.create({
 
 const getAllExpenseRepository = () => prisma.expenses.findMany();
 
+const getExpenseByIdRepository = (id) => prisma.expenses.findUnique({where:{id: Number(id)}});
+
+const updateExpenseRepository = (id, body) => prisma.expenses.update({
+    data: {
+        ...body,
+        type: {
+            connect: { id: body.type }
+        },
+        travels: {
+            connect: { id: body.travels }
+        }
+    },
+    where: {
+        id: Number(id)
+    }
+});
+
 
 export default {
     createExpenseRepository,
-    getAllExpenseRepository
+    getAllExpenseRepository,
+    getExpenseByIdRepository,
+    updateExpenseRepository
 }

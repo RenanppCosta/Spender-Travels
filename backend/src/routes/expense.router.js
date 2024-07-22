@@ -6,5 +6,6 @@ const expenseRouter = Router();
 
 expenseRouter.post("/", expenseController.createExpenseController);
 expenseRouter.get("/", expenseController.getAllExpenseController);
+expenseRouter.patch("/:id", expenseController.updateExpenseController);
 
 export default expenseRouter;

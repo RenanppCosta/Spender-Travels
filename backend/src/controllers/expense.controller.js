@@ -24,7 +24,22 @@ const getAllExpenseController = async (req,res) => {
     }
 }
 
+const updateExpenseController = async (req,res) => {
+    const { id } = req.params;
+    const body  = req.body;
+
+    try {
+        const expense = await expenseServices.updateExpenseService(id, body);
+
+        return res.send(expense);
+        
+    } catch (error) {
+        return res.status(500).send(error.message);
+    }
+}
+
 export default {
     createExpenseController,
-    getAllExpenseController
+    getAllExpenseController,
+    updateExpenseController
 }
