@@ -13,6 +13,18 @@ const createExpenseController = async (req,res) => {
     }
 }
 
+const getAllExpenseController = async (req,res) => {
+    try {
+        const expenses = await expenseServices.getAllExpenseService();
+
+        return res.send(expenses);
+        
+    } catch (error) {
+        return res.status(500).send(error.message);
+    }
+}
+
 export default {
-    createExpenseController
+    createExpenseController,
+    getAllExpenseController
 }

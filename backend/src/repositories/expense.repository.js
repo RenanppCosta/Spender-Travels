@@ -8,7 +8,10 @@ const createExpenseRepository = (body) => prisma.expenses.create({
     }
 });
 
+const getAllExpenseRepository = () => prisma.expenses.findMany();
+
 
 export default {
-    createExpenseRepository
+    createExpenseRepository,
+    getAllExpenseRepository
 }

@@ -10,7 +10,16 @@ const createExpenseService = (body) => {
     return expense;
 }
 
+const getAllExpenseService = () => {
+    const expenses = expenseRepository.getAllExpenseRepository();
+
+    if(expenses.length == 0) throw new Error("Não há viagens cadastradas!");
+
+    return expenses;
+}
+
 export default{
-    createExpenseService
+    createExpenseService,
+    getAllExpenseService
 }
 

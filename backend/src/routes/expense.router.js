@@ -5,5 +5,6 @@ import { authMiddleware } from "../middlewares/auth.middleware.js";
 const expenseRouter = Router();
 
 expenseRouter.post("/", expenseController.createExpenseController);
+expenseRouter.get("/", expenseController.getAllExpenseController);
 
 export default expenseRouter;
