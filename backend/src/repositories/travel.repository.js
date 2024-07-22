@@ -20,6 +20,18 @@ const getAllTravelRepository = () => prisma.travels.findMany({
                 name: true,
                 location: true
             }
+        },
+        Expenses: {
+            select: {
+                id: true,
+                description: true,
+                value: true,
+                type: {
+                    select:{
+                        name: true
+                    }
+                }
+            }
         }
     }
 });
