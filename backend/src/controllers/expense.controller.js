@@ -38,8 +38,21 @@ const updateExpenseController = async (req,res) => {
     }
 }
 
+const deleteExpenseController = async (req,res) =>{
+    const { id } = req.params;
+
+    try {
+        await expenseServices.deleteExpenseService(id);
+
+        return res.send("Despesa deletada com sucesso!");
+    } catch (error) {
+        return res.status(500).send(error.message);
+    }
+}
+
 export default {
     createExpenseController,
     getAllExpenseController,
-    updateExpenseController
+    updateExpenseController,
+    deleteExpenseController
 }

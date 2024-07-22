@@ -27,10 +27,13 @@ const updateExpenseRepository = (id, body) => prisma.expenses.update({
     }
 });
 
+const deleteExpenseRepository = (id) => prisma.expenses.delete({where:{id: Number(id)}});
+
 
 export default {
     createExpenseRepository,
     getAllExpenseRepository,
     getExpenseByIdRepository,
-    updateExpenseRepository
+    updateExpenseRepository,
+    deleteExpenseRepository
 }
