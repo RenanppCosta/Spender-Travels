@@ -28,8 +28,8 @@ model User {
 model Travels {
   id            Int    @id @default(autoincrement())
   destiny       String
-  departureDate String
-  returnDate    String
+  departureDate DateTime
+  returnDate    DateTime
   initialBudget Decimal
   numberOfPeople Int
 

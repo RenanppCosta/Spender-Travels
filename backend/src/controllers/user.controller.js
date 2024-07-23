@@ -1,9 +1,11 @@
 import userServices from "../services/user.services.js";
+import { userSchema } from "../validations/user.schema.js";
 
 const createUserController = async (req, res) =>{
     const body = req.body;
     try {
-        const user = await userServices.createUserService(body);
+        const data = userSchema.parse(body)
+        const user = await userServices.createUserService(data);
 
         return res.send(user);
 

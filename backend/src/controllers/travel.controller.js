@@ -1,10 +1,12 @@
 import travelServices from "../services/travel.services.js";
+import { travelSchema } from "../validations/travel.schema.js";
 
 const createTravelController = async (req, res) => {
     const body = req.body;
 
     try {
-        const travel = await travelServices.createTravelService(body);
+        const data = travelSchema.parse(body);
+        const travel = await travelServices.createTravelService(data);
         
         return res.send(travel);
     } catch (error) {
