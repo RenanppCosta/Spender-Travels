@@ -1,10 +1,12 @@
 import expenseServices from "../services/expense.services.js";
+import { expenseSchema } from "../validations/expense.schema.js";
 
 const createExpenseController = async (req,res) => {
     const body = req.body;
 
     try {
-        const expense = await expenseServices.createExpenseService(body);
+        const data = expenseSchema.parse(body);
+        const expense = await expenseServices.createExpenseService(data);
 
         return res.send(expense);
 
