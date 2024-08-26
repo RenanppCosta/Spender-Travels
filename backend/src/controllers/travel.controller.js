@@ -67,10 +67,23 @@ const deleteTravelController = async (req,res) => {
     }
 }
 
+const searchTravelsByDestinyController = async (req,res) =>{
+    const { destiny } = req.query;
+
+    try {
+        const travels = await travelServices.searchTravelsByDestinyService(destiny);
+
+        return res.send(travels);
+    } catch (error) {
+        return res.status(500).send(error.message);
+    }
+}
+
 export default{
     createTravelController,
     getAllTravelController,
     getTravelByIdController,
     updateTravelController,
-    deleteTravelController
+    deleteTravelController,
+    searchTravelsByDestinyController
 }

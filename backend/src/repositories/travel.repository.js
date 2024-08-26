@@ -66,11 +66,20 @@ const updateTravelRepository = (id, body) => prisma.travels.update({
 
 const deleteTravelRepository = (id) => prisma.travels.delete({where: {id: Number(id)}});
 
+const searchTravelsByDestinyRepository = (destiny) => prisma.travels.findMany({
+    where:{
+        destiny:{
+            contains: destiny,
+        }
+    }
+})
+
 
 export default{
     createTravelRepository,
     getAllTravelRepository,
     getTravelByIdRepository,
     updateTravelRepository,
-    deleteTravelRepository
+    deleteTravelRepository,
+    searchTravelsByDestinyRepository
 }

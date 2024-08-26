@@ -55,10 +55,21 @@ const deleteTravelService = async (id) => {
     await travelRepository.deleteTravelRepository(id);
 }
 
+const searchTravelsByDestinyService = async (destiny) =>{
+    if(!destiny || destiny.length < 3) throw new Error("O termo de busca deve ter pelo menos 3 caracteres.");
+
+    const travels = await travelRepository.searchTravelsByDestinyRepository(destiny);
+
+    if(travels.length === 0) throw new Error("Não existe nenhuma viagem com esse destino!");
+
+    return travels;
+} 
+
 export default {
     createTravelService,
     getAllTravelService,
     getTravelByIdService,
     updateTravelService,
-    deleteTravelService
+    deleteTravelService,
+    searchTravelsByDestinyService
 }
