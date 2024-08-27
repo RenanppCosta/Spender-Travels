@@ -63,7 +63,15 @@ const searchTravelsByDestinyService = async (destiny) =>{
     if(travels.length === 0) throw new Error("Não existe nenhuma viagem com esse destino!");
 
     return travels;
-} 
+}
+
+const getAllTravelByUserService = async (userId) =>{
+    const travels = await travelRepository.getAllTravelByUserRepository(userId);
+
+    if(travels.length === 0) throw new Error("Não há nenhuma viagem cadastrada por ele.");
+
+    return travels;
+}
 
 export default {
     createTravelService,
@@ -71,5 +79,6 @@ export default {
     getTravelByIdService,
     updateTravelService,
     deleteTravelService,
-    searchTravelsByDestinyService
+    searchTravelsByDestinyService,
+    getAllTravelByUserService
 }

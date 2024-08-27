@@ -79,11 +79,23 @@ const searchTravelsByDestinyController = async (req,res) =>{
     }
 }
 
+const getAllTravelByUserController = async (req,res) =>{
+    try{
+        const travels = await travelServices.getAllTravelByUserService(req.userId);
+
+        return res.send(travels);
+
+    }catch (error) {
+        return res.status(500).send(error.message);
+    }
+}
+
 export default{
     createTravelController,
     getAllTravelController,
     getTravelByIdController,
     updateTravelController,
     deleteTravelController,
-    searchTravelsByDestinyController
+    searchTravelsByDestinyController,
+    getAllTravelByUserController
 }

@@ -72,7 +72,40 @@ const searchTravelsByDestinyRepository = (destiny) => prisma.travels.findMany({
             contains: destiny,
         }
     }
-})
+});
+
+const getAllTravelByUserRepository = (userId) => prisma.travels.findMany({
+    where:{
+        userId: Number(userId)
+    },
+    select:{
+        id: true,
+        destiny: true,
+        departureDate: true,
+        returnDate: true,
+        initialBudget: true,
+        numberOfPeople: true,
+        user: {
+            select: {
+                id: true,
+                name: true,
+                location: true
+            }
+        },
+        Expenses: {
+            select: {
+                id: true,
+                description: true,
+                value: true,
+                type: {
+                    select:{
+                        name: true
+                    }
+                }
+            }
+        }
+    }
+});
 
 
 export default{
@@ -81,5 +114,6 @@ export default{
     getTravelByIdRepository,
     updateTravelRepository,
     deleteTravelRepository,
-    searchTravelsByDestinyRepository
+    searchTravelsByDestinyRepository,
+    getAllTravelByUserRepository
 }

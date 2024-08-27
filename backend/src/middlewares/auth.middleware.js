@@ -11,8 +11,10 @@ export const authMiddleware = (req, res, next) =>{
         const replace = token.replace("Bearer ", "");
         jwt.verify(replace, process.env.JWT_SECRET, (error, decoded)=>{
             console.log(decoded);
+            req.userId = decoded.id;
+            next();
         });
-        next();
+        
     } catch (error) {
         return res.status(401).send({message:"Credenciais inválidas."});
     }
