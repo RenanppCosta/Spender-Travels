@@ -21,7 +21,11 @@ const getUserByIdRepository = (id) => prisma.user.findUnique({
         name: true,
         email: true,
         location: true,
-        Travels: true
+        Travels: {
+            include:{
+                Expenses: true
+            }
+        }
     }
 
 });
