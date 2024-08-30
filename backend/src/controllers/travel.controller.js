@@ -15,11 +15,27 @@ const createTravelController = async (req, res) => {
 }
 
 const getAllTravelController = async (req, res) => {
+    let {page = 1, limit = 10} = req.query;
+
     try {
+        const currentUrl = req.baseUrl;
+        page = Number(page);
+        limit = Number(limit);
 
-        const travels = await travelServices.getAllTravelService();
+        const {travels, pagination} = await travelServices.getAllTravelService(page, limit);
 
-        return res.send(travels);
+        const nextUrl = pagination.totalPages > page ? `${currentUrl}?page=${page + 1}&limit=${limit}` : null;
+        const previousUrl = page > 1 ? `${currentUrl}?page=${page - 1}&limit=${limit}` : null;
+
+        return res.send({
+            nextUrl,
+            previousUrl,
+            page,
+            limit,
+            totalPages: pagination.totalPages,
+            totalNews: pagination.totalRecords,
+            travels
+        });
         
     } catch (error) {
         return res.status(500).send(error.message);

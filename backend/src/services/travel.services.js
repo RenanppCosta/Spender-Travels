@@ -17,12 +17,25 @@ const createTravelService = async (body) =>{
     return travel;
 };
 
-const getAllTravelService = async () => {
-    const travels = await travelRepository.getAllTravelRepository();
+const getAllTravelService = async (page, limit) => {
+    const skip = (page - 1) * limit;
+    const take = limit;
 
-    if(travels.length == 0) throw new Error("Não há viagens cadastradas!");
+    const totalRecords = await travelRepository.countAllTravel();
+    const totalPages = Math.ceil(totalRecords/limit);
 
-    return travels;
+    const travels = await travelRepository.getAllTravelRepository({skip, take});
+
+    if (travels.length === 0 && page > 1) throw new Error("Não há viagens cadastradas!");
+
+    return {
+        travels,
+        pagination:{
+            totalRecords,
+            totalPages,
+            limit
+        }
+    };
 };
 
 const getTravelByIdService = async (id) => {

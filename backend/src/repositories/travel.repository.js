@@ -6,7 +6,9 @@ const createTravelRepository = (body) => prisma.travels.create({
     user: { connect: { id: body.user } }
 }});
 
-const getAllTravelRepository = () => prisma.travels.findMany({
+const getAllTravelRepository = ({skip, take}) => prisma.travels.findMany({
+    skip,
+    take,
     select: {
         id: true,
         destiny: true,
@@ -33,8 +35,10 @@ const getAllTravelRepository = () => prisma.travels.findMany({
                 }
             }
         }
-    }
+    },
 });
+
+const countAllTravel = async () => prisma.travels.count();
 
 const getTravelByIdRepository = (id) => prisma.travels.findUnique({
     where: {
@@ -115,5 +119,6 @@ export default{
     updateTravelRepository,
     deleteTravelRepository,
     searchTravelsByDestinyRepository,
-    getAllTravelByUserRepository
+    getAllTravelByUserRepository,
+    countAllTravel
 }
