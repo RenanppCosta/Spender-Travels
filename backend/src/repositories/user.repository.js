@@ -2,6 +2,8 @@ import  prisma from "./prisma.js"
 
 const createUserRepository = (body) => prisma.user.create({data: body});
 
+const findEmailByUser = (email) => prisma.user.findUnique({where: email});
+
 const getAllUserRepository = () => prisma.user.findMany({
     select: {
         id: true,
@@ -41,6 +43,7 @@ const deleteUserRepository = (id) => prisma.user.delete({where: {id: Number(id)}
 
 export default{
     createUserRepository,
+    findEmailByUser,
     getAllUserRepository,
     getUserByIdRepository,
     updateUserRepository,

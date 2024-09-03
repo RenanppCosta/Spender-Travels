@@ -6,6 +6,10 @@ const createUserService = async (body) => {
 
     if(!name || !email || !password || !location ) throw new Error("Registre todos os campos corretamente");
 
+    const existingUser = await userRepository.findByEmail(email);
+
+    if(existingUser) throw new Error("Esse e-mail já está cadastrado.")
+
     password = bcrypt.hashSync(password, 10);
 
     const user = await userRepository.createUserRepository({
