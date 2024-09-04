@@ -6,7 +6,7 @@ const createUserService = async (body) => {
 
     if(!name || !email || !password || !location ) throw new Error("Registre todos os campos corretamente");
 
-    const existingUser = await userRepository.findByEmail(email);
+    const existingUser = await userRepository.findEmailByUser(email);
 
     if(existingUser) throw new Error("Esse e-mail já está cadastrado.")
 
