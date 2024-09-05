@@ -33,6 +33,22 @@ describe("User service", ()=>{
             location: "Rio de Janeiro"
         }));
 
-    })
+    });
+
+    test("Deve lançar um erro se o E-mail do usuário já estiver cadastrado", async () =>{
+        userRepository.findEmailByUser.mockResolvedValue({email: "testeuser@gmail.com"});
+
+        const newUser = {
+            name: "Usuário Teste",
+            email: "testeuser@gmail.com",
+            password: "123456",
+            location: "Rio de Janeiro"
+        }
+
+        await expect(userService.createUserService(newUser)).rejects.toThrow("Esse e-mail já está cadastrado.");
+
+        expect(userRepository.createUserRepository).not.toHaveBeenCalled();
+
+    });
 
 })
