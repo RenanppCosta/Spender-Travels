@@ -51,4 +51,13 @@ describe("User service", ()=>{
 
     });
 
-})
+    test("Deve lançar um erro se algum campo obrigatório estiver faltando", async ()=>{
+        const incompleteUser = { 
+            name: "Usuário Teste", 
+            email: "testeuser@gmail.com",
+        }
+    
+        await expect(userService.createUserService(incompleteUser)).rejects.toThrow("Registre todos os campos corretamente");
+    });
+
+});
