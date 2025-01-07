@@ -13,7 +13,8 @@
 * Node.js;
 * MySQL;
 * Prisma;
-* React; 
+* React;
+* Jest; 
 
 ## :rocket: Rodando o projeto
 Para rodar o repositório é necessário clonar o mesmo, dar o seguinte comando para iniciar o projeto:
@@ -24,6 +25,10 @@ Após instaladas as dependências, dê o comando seguinte para rodar o projeto:
 ```
 <npm run dev> 
 ```
+
+## :soon: Implementação futura
+* Swagger;
+
 
 ## :handshake: Colaboradores
 <table>
